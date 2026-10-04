@@ -31,7 +31,7 @@ Sochan studies software engineering at CADT and expects to graduate in 2028. Her
 
 ## Brand Commitments
 
-Soft green, warm brown, water-light base, minimal and clean; cute cartoon frog on a lotus leaf used sparingly. Supplied profile portrait.
+White and cream foundations with visible light blue and warm brown; soft green as a small accent. Minimal, clean, and fresh, with a cute cartoon frog on a lotus leaf used sparingly. Supplied profile portrait. Concise copy and a portrait-led layout inspired by the user's reference.
 
 ## Evidence on Hand
 

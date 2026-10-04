@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f8f2" />
+    <meta name="theme-color" content="#fffdf9" />
     <meta name="description" content="Sarin Meas Sochan's portfolio of GAMA agent-based models, with interactive browser adaptations of three simulations." />
     <title>Sarin Meas Sochan · GAMA Portfolio</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
   </head>
@@ -32,29 +32,27 @@
     <main id="main">
       <section class="hero wrap" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="hero-hello">Hi, I'm Sochan <span aria-hidden="true">✳</span></p>
-          <h1 id="hero-title">Learning how<br /><em>systems come alive.</em></h1>
-          <p class="hero-lede">I'm Sarin Meas Sochan, a software engineering student at CADT. I work with web and app development, and I explore agent-based modeling with GAMA.</p>
+          <h1 id="hero-title">Hello, I'm<br /><em>Sochan.</em></h1>
+          <p class="hero-lede">Software engineering student at CADT, exploring agent-based simulations with GAMA.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#projects">Explore my models <span aria-hidden="true">↘</span></a>
-            <a class="button button-text" href="#contact">Get in touch</a>
+            <a class="button button-primary" href="#projects">Explore projects</a>
+            <a class="button button-text" href="#contact">Contact me</a>
           </div>
-          <div class="hero-facts" aria-label="At a glance"><span>Software engineering student</span><span>CADT · Expected graduation 2028</span></div>
+          <p class="hero-meta">CADT · Expected graduation 2028</p>
         </div>
         <div class="hero-visual">
-          <div class="portrait-frame">
-            <img class="portrait" src="./assets/sochan.jpg" alt="Portrait of Sarin Meas Sochan" width="595" height="800" />
-            <div class="portrait-label">Sarin Meas Sochan</div>
-          </div>
+          <div class="portrait-disc" aria-hidden="true"></div>
+          <img class="portrait has-cutout" src="./assets/sochan-cutout.png" alt="Portrait of Sarin Meas Sochan" width="1081" height="1455" />
+          <span class="portrait-note">Sarin Meas Sochan</span>
           <img class="frog-art" src="./assets/frog-lotus.png" alt="" width="1536" height="1024" />
         </div>
       </section>
+      <div class="ribbon" aria-label="Portfolio themes"><div class="wrap ribbon-inner"><span>GAMA projects</span><span aria-hidden="true">✳</span><span>Browser demos</span><span aria-hidden="true">✳</span><span>Original code</span></div></div>
 
       <section class="project-section" id="projects" aria-labelledby="projects-title">
         <div class="wrap">
           <div class="section-heading">
-            <div><h2 id="projects-title">Explore the models.</h2><p>Three individual GAMA projects, adapted here so you can run a small version in your browser.</p></div>
-            <span class="section-symbol" aria-hidden="true">✳</span>
+            <div><h2 id="projects-title">Selected projects.</h2><p>Try three browser adaptations of my GAMA models.</p></div>
           </div>
 
           <div class="project-tabs" role="tablist" aria-label="Choose a project">
@@ -67,19 +65,18 @@
             <div class="project-info">
               <div class="project-count" id="project-count">01 / 03</div>
               <h3 id="project-title">Prey &amp; Predator</h3>
-              <p class="project-summary" id="project-summary">An ecosystem model where prey eat vegetation and predators hunt prey. Energy, reproduction, and movement shape the changing populations.</p>
-              <div class="project-detail" id="project-detail">The original GAMA model includes adjustable parameters, population charts, and an optimization experiment. This browser version demonstrates the main agent interactions.</div>
+              <p class="project-summary" id="project-summary">Prey eat vegetation. Predators hunt prey. Their populations change as the simulation runs.</p>
               <div class="project-links"><a id="project-source" href="https://github.com/sochan707/GAMA_Prey_Predator" target="_blank" rel="noopener noreferrer">View GAMA source <span aria-hidden="true">↗</span></a></div>
-              <p class="adaptation-note">Interactive web adaptation · The original model runs in GAMA.</p>
+              <p class="adaptation-note">Web adaptation · Original model in GAMA</p>
             </div>
             <div class="demo-column">
               <div class="demo-frame">
                 <div class="demo-topline"><span class="live-pill"><span class="live-dot" id="live-dot"></span><span id="demo-state">Ready to run</span></span><span id="demo-cycle">Cycle 0</span></div>
                 <canvas id="demo-canvas" width="960" height="600" role="img" aria-label="Interactive simulation preview"></canvas>
-                <div class="canvas-caption"><span id="canvas-hint">Blue: prey · Brown: predators · Green: vegetation</span><span>Browser demo</span></div>
+                <div class="canvas-caption"><span id="canvas-hint">Blue: prey · Brown: predators · Green: vegetation</span></div>
               </div>
               <div class="demo-toolbar" aria-label="Simulation controls">
-                <button class="button button-primary run-button" type="button" id="run-button">Run simulation</button>
+                <button class="button button-primary run-button" type="button" id="run-button">Run demo</button>
                 <button class="button button-soft" type="button" id="step-button">Step</button>
                 <button class="button button-soft" type="button" id="reset-button">Reset</button>
                 <label class="speed-control" for="speed-input">Speed <input id="speed-input" type="range" min="1" max="4" step="1" value="1" /><output id="speed-value" for="speed-input">1×</output></label>
@@ -91,16 +88,17 @@
         </div>
       </section>
 
-      <section class="about-section wrap" id="about" aria-labelledby="about-title">
-        <div class="about-lead"><h2 id="about-title">Curious about the rules behind the motion.</h2><p>I started exploring GAMA to learn the basics of agent-based models: simulations where individual entities interact to create more complex behavior.</p></div>
+      <section class="about-section" id="about" aria-labelledby="about-title"><div class="wrap about-inner">
+        <div class="about-lead"><h2 id="about-title">A little about me.</h2><p>I study software engineering at CADT and enjoy web and app development. I use GAMA to learn how individual agents can model complex systems.</p></div>
         <div class="about-grid">
-          <div class="about-block"><span class="small-label">Education</span><h3>Learning software engineering at CADT.</h3><p>I'm currently pursuing a bachelor's degree, with expected graduation in 2028. Web and app development are my primary skills.</p></div>
-          <div class="about-block"><span class="small-label">Experience &amp; involvement</span><h3>Learning with others, too.</h3><p>I volunteered as a technical assistant at Innovation Challenge. At Next-Gen, I helped train junior students and worked on a project for the competition.</p></div>
-        </div>
+          <div class="about-block"><span class="small-label">Education</span><h3>CADT</h3><p>Bachelor's degree in progress · Expected 2028</p></div>
+          <div class="about-block"><span class="small-label">Involvement</span><h3>Innovation Challenge</h3><p>Volunteer technical assistant</p></div>
+          <div class="about-block"><span class="small-label">Competition</span><h3>Next-Gen</h3><p>Trained junior students and worked on a competition project</p></div>
+        </div></div>
       </section>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="wrap contact-inner"><div><h2 id="contact-title">Let's connect.</h2><p>Have a question about a model or want to get in touch? Send me a message.</p></div><div class="contact-actions"><a href="mailto:sochan7621@gmail.com" class="contact-link">sochan7621@gmail.com <span aria-hidden="true">↗</span></a><a href="https://github.com/sochan707" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub / sochan707 <span aria-hidden="true">↗</span></a></div></div>
+        <div class="wrap contact-inner"><div><h2 id="contact-title">Say hello.</h2></div><div class="contact-actions"><a href="mailto:sochan7621@gmail.com" class="contact-link">sochan7621@gmail.com <span aria-hidden="true">↗</span></a><a href="https://github.com/sochan707" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub / sochan707 <span aria-hidden="true">↗</span></a></div></div>
       </section>
     </main>
 

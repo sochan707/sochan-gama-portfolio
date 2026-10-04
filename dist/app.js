@@ -20,8 +20,7 @@
   var projects = {
     prey: {
       count: '01 / 03', title: 'Prey & Predator',
-      summary: 'An ecosystem model where prey eat vegetation and predators hunt prey. Energy, reproduction, and movement shape the changing populations.',
-      detail: 'The original GAMA model includes adjustable parameters, population charts, and an optimization experiment. This browser version demonstrates the main agent interactions.',
+      summary: 'Prey eat vegetation. Predators hunt prey. Their populations change as the simulation runs.',
       source: 'https://github.com/sochan707/GAMA_Prey_Predator',
       hint: 'Blue: prey · Brown: predators · Green: vegetation',
       controls: [{key:'prey', label:'Prey', min:30, max:250, step:10, value:160},{key:'predators', label:'Predators', min:2, max:45, step:1, value:16}],
@@ -29,8 +28,7 @@
     },
     'three-d': {
       count: '02 / 03', title: '3D Model',
-      summary: 'Moving agents occupy a three-dimensional cube and identify nearby neighbors. Connections make their spatial relationships visible.',
-      detail: 'The original GAMA project uses moving 3D agents and an OpenGL display. This browser version projects the agents and their neighbor links onto a canvas.',
+      summary: 'Moving agents fill a 3D cube. Lines show which agents are near each other.',
       source: 'https://github.com/sochan707/GAMA_3D_Model',
       hint: 'Blue: moving agents · Lines: nearby neighbors',
       controls: [{key:'agents', label:'Agents', min:20, max:160, step:10, value:100}],
@@ -38,8 +36,7 @@
     },
     sheep: {
       count: '03 / 03', title: 'Sheep Movement',
-      summary: 'A flock moves through a landscape with grass and obstacles. A dog eventually begins herding sheep toward an exit.',
-      detail: 'The original GAMA model combines flocking, grazing preferences, obstacle avoidance, paths, a herding dog, and an exit gate. This browser demo focuses on those visible interactions.',
+      summary: 'Sheep flock and graze around obstacles. A dog later herds them toward an exit.',
       source: 'https://github.com/sochan707/GAMA_Herds_Movement',
       hint: 'Blue: sheep · Brown: dog · Green: grass · Orange: exit',
       controls: [{key:'sheep', label:'Sheep', min:20, max:100, step:5, value:75},{key:'obstacles', label:'Obstacles', min:0, max:10, step:1, value:5}],
@@ -259,7 +256,7 @@
     if(currentModel)currentModel.draw();
   }
   function updateStatus(){
-    runButton.textContent=running?'Pause simulation':currentModel.done?'Run again':currentModel.cycle?'Continue simulation':'Run simulation';
+    runButton.textContent=running?'Pause':currentModel.done?'Run again':currentModel.cycle?'Continue':'Run demo';
     stateNode.textContent=currentModel.done?'Finished':running?'Running':currentModel.cycle?'Paused':'Ready to run';
     cycleNode.textContent='Cycle '+currentModel.cycle;
     liveDot.classList.toggle('running',running);
@@ -284,7 +281,6 @@
     document.getElementById('project-count').textContent=project.count;
     document.getElementById('project-title').textContent=project.title;
     document.getElementById('project-summary').textContent=project.summary;
-    document.getElementById('project-detail').textContent=project.detail;
     document.getElementById('project-source').href=project.source;
     document.getElementById('canvas-hint').textContent=project.hint;
     canvas.setAttribute('aria-label',project.canvasLabel);
