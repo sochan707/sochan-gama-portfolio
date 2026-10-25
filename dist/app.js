@@ -329,6 +329,35 @@
     }
     lastTime=time;requestAnimationFrame(frame);
   }
+  function initScrollMotion(){
+    if(!window.matchMedia||!('IntersectionObserver' in window))return;
+    var motionPreference=window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(motionPreference.matches)return;
+    document.querySelectorAll('[data-reveal-stagger]').forEach(function(group){
+      Array.from(group.children).filter(function(item){return item.hasAttribute('data-reveal');}).forEach(function(item,index){
+        item.style.setProperty('--reveal-index',String(Math.min(index,4)));
+      });
+    });
+    var revealObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },{rootMargin:'0px 0px -10% 0px',threshold:.08});
+    document.querySelectorAll('[data-reveal]').forEach(function(item){revealObserver.observe(item);});
+    document.documentElement.classList.add('motion-ready');
+    if(motionPreference.addEventListener){
+      motionPreference.addEventListener('change',function(event){
+        if(event.matches){
+          document.documentElement.classList.remove('motion-ready');
+          revealObserver.disconnect();
+        }
+      });
+    }
+  }
+  initScrollMotion();
   applyTheme(isDarkTheme() ? 'dark' : 'light', false);
   selectProject('prey',false);setCanvasSize();requestAnimationFrame(frame);
 })();

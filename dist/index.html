@@ -46,7 +46,7 @@
 
     <main id="main">
       <section class="hero wrap" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
+        <div class="hero-copy" data-reveal="hero-copy">
           <h1 id="hero-title">Hello, I'm<br /><em>Sochan.</em></h1>
           <p class="hero-lede">Software engineering student at CADT, exploring agent-based simulations with GAMA and building web and app projects.</p>
           <div class="hero-actions">
@@ -55,7 +55,7 @@
           </div>
           <p class="hero-meta">CADT · Expected graduation 2028</p>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual" data-reveal="hero-visual">
           <div class="portrait-disc" aria-hidden="true"></div>
           <img class="portrait has-cutout" src="./assets/sochan-cutout.png" alt="Portrait of Sarin Meas Sochan" width="1081" height="1455" />
           <span class="portrait-note">Sarin Meas Sochan</span>
@@ -66,7 +66,7 @@
 
       <section class="project-section" id="projects" aria-labelledby="projects-title">
         <div class="wrap">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="heading">
             <div><h2 id="projects-title">Selected projects.</h2><p>Try three browser adaptations of my GAMA models.</p></div>
           </div>
 
@@ -77,14 +77,14 @@
           </div>
 
           <div class="project-panel" id="project-panel" role="tabpanel" aria-labelledby="tab-prey">
-            <div class="project-info">
+            <div class="project-info" data-reveal="from-left">
               <div class="project-count" id="project-count">01 / 03</div>
               <h3 id="project-title">Prey &amp; Predator</h3>
               <p class="project-summary" id="project-summary">Prey eat vegetation. Predators hunt prey. Their populations change as the simulation runs.</p>
               <div class="project-links"><a id="project-source" href="https://github.com/sochan707/GAMA_Prey_Predator" target="_blank" rel="noopener noreferrer">View GAMA source <span aria-hidden="true">↗</span></a></div>
               <p class="adaptation-note">Web adaptation · Original model in GAMA</p>
             </div>
-            <div class="demo-column">
+            <div class="demo-column" data-reveal="demo">
               <div class="demo-frame">
                 <div class="demo-topline"><span class="live-pill"><span class="live-dot" id="live-dot"></span><span id="demo-state">Ready to run</span></span><span id="demo-cycle">Cycle 0</span></div>
                 <canvas id="demo-canvas" width="960" height="600" role="img" aria-label="Interactive simulation preview"></canvas>
@@ -102,28 +102,28 @@
           </div>
 
           <section class="coding-projects" aria-labelledby="coding-projects-title">
-            <div class="coding-projects-heading">
+            <div class="coding-projects-heading" data-reveal="heading">
               <div>
                 <h3 id="coding-projects-title">Other coding projects.</h3>
                 <p>A few more projects from my GitHub work.</p>
               </div>
             </div>
-            <div class="coding-project-grid">
-              <article class="coding-project-card">
+            <div class="coding-project-grid" data-reveal-stagger>
+              <article class="coding-project-card" data-reveal="soft-lift">
                 <div class="coding-project-card-top"><span class="small-label">Shopping interface</span></div>
                 <h4>Novel Shop</h4>
                 <p>Novel-shopping interface with product browsing, cart, and checkout pages.</p>
                 <ul class="tech-list" aria-label="Technologies"><li>React</li><li>JavaScript</li><li>Vite</li></ul>
                 <a class="coding-project-link" href="https://github.com/sochan707/novel_shop" target="_blank" rel="noopener noreferrer" aria-label="View Novel Shop repository on GitHub (opens in a new tab)">View repository <span aria-hidden="true">↗</span></a>
               </article>
-              <article class="coding-project-card">
+              <article class="coding-project-card" data-reveal="soft-lift">
                 <div class="coding-project-card-top"><span class="small-label">Team project · Team WoW</span></div>
                 <h4>Life Goods</h4>
                 <p>Khmer-first packaged-food information with barcode lookup and optional translation.</p>
                 <ul class="tech-list" aria-label="Technologies"><li>React</li><li>TypeScript</li><li>FastAPI</li></ul>
                 <a class="coding-project-link" href="https://github.com/internetOnion/life-goods" target="_blank" rel="noopener noreferrer" aria-label="View Life Goods repository on GitHub (opens in a new tab)">View repository <span aria-hidden="true">↗</span></a>
               </article>
-              <article class="coding-project-card">
+              <article class="coding-project-card" data-reveal="soft-lift">
                 <div class="coding-project-card-top"><span class="small-label">Recipe app</span></div>
                 <h4>JongKran</h4>
                 <p>Recipe app with ingredient matching and saved favorites.</p>
@@ -137,12 +137,12 @@
 
       <section class="skills-section" id="skills" aria-labelledby="skills-title">
         <div class="wrap skills-layout">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal="from-left">
             <h2 id="skills-title">Technical skills.</h2>
             <p>Tools and technologies I use to build software.</p>
           </div>
-          <div class="skills-grid">
-            <section class="skills-group" aria-labelledby="web-skills-title">
+          <div class="skills-grid" data-reveal="from-right" data-reveal-stagger>
+            <section class="skills-group" aria-labelledby="web-skills-title" data-reveal="skill-row">
               <h3 id="web-skills-title">Web &amp; backend</h3>
               <ul aria-label="Web and backend skills">
                 <li>JavaScript</li>
@@ -152,7 +152,7 @@
                 <li>FastAPI</li>
               </ul>
             </section>
-            <section class="skills-group" aria-labelledby="database-skills-title">
+            <section class="skills-group" aria-labelledby="database-skills-title" data-reveal="skill-row">
               <h3 id="database-skills-title">Databases</h3>
               <ul aria-label="Database skills">
                 <li>SQL</li>
@@ -162,7 +162,7 @@
                 <li>Prisma</li>
               </ul>
             </section>
-            <section class="skills-group" aria-labelledby="tools-skills-title">
+            <section class="skills-group" aria-labelledby="tools-skills-title" data-reveal="skill-row">
               <h3 id="tools-skills-title">Tools &amp; simulation</h3>
               <ul aria-label="Tools and simulation skills">
                 <li>Vite</li>
@@ -174,16 +174,16 @@
       </section>
 
       <section class="about-section" id="about" aria-labelledby="about-title"><div class="wrap about-inner">
-        <div class="about-lead"><h2 id="about-title">A little about me.</h2><p>I study software engineering at CADT and enjoy web and app development. I use GAMA to learn how individual agents can model complex systems.</p></div>
-        <div class="about-grid">
-          <div class="about-block"><span class="small-label">Education</span><h3>CADT</h3><p>Bachelor's degree in progress · Expected 2028</p></div>
-          <div class="about-block"><span class="small-label">Involvement</span><h3>Innovation Challenge</h3><p>Volunteer technical assistant</p></div>
-          <div class="about-block"><span class="small-label">Competition</span><h3>Next-Gen Engagement Program - Batch III</h3><p>Trained junior students and worked on a competition project</p></div>
+        <div class="about-lead" data-reveal="from-left"><h2 id="about-title">A little about me.</h2><p>I study software engineering at CADT and enjoy web and app development. I use GAMA to learn how individual agents can model complex systems.</p></div>
+        <div class="about-grid" data-reveal-stagger>
+          <div class="about-block" data-reveal="soft-lift"><span class="small-label">Education</span><h3>CADT</h3><p>Bachelor's degree in progress · Expected 2028</p></div>
+          <div class="about-block" data-reveal="soft-lift"><span class="small-label">Involvement</span><h3>Innovation Challenge</h3><p>Volunteer technical assistant</p></div>
+          <div class="about-block" data-reveal="soft-lift"><span class="small-label">Competition</span><h3>Next-Gen Engagement Program - Batch III</h3><p>Trained junior students and worked on a competition project</p></div>
         </div></div>
       </section>
 
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="wrap contact-inner"><div><h2 id="contact-title">Say hello.</h2></div><div class="contact-actions"><a href="mailto:sochan7621@gmail.com" class="contact-link">sochan7621@gmail.com <span aria-hidden="true">↗</span></a><a href="https://github.com/sochan707" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub / sochan707 <span aria-hidden="true">↗</span></a></div></div>
+        <div class="wrap contact-inner"><div data-reveal="from-left"><h2 id="contact-title">Say hello.</h2></div><div class="contact-actions" data-reveal-stagger><a href="mailto:sochan7621@gmail.com" class="contact-link" data-reveal="from-right">sochan7621@gmail.com <span aria-hidden="true">↗</span></a><a href="https://github.com/sochan707" target="_blank" rel="noopener noreferrer" class="contact-link" data-reveal="from-right">GitHub / sochan707 <span aria-hidden="true">↗</span></a></div></div>
       </section>
     </main>
 
