@@ -211,3 +211,22 @@ h1, h2, h3 { line-height: 1.1; }
   .button { transition: none; }
   .button:hover { transform: none; }
 }
+
+.skills-section { background: var(--cream); padding-block: 5.5rem 6rem; }
+.skills-section .section-heading { margin-bottom: 2.3rem; }
+.skills-section .section-heading h2 { font-family: var(--display); font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -.04em; margin-bottom: .65rem; text-wrap: balance; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.skills-group { border-top: 1px solid #d6d6ce; padding-top: 1rem; }
+.skills-group h3 { margin-bottom: .9rem; color: var(--brown-dark); font-family: var(--display); font-size: 1.08rem; letter-spacing: -.02em; }
+.skills-group ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; margin: 0; padding-inline-start: 1.1rem; }
+.skills-group li { color: #4d5753; font-size: .95rem; }
+.skills-group li::marker { color: var(--green); }
+
+@media (max-width: 760px) {
+  .skills-section { padding-block: 4rem 4.5rem; }
+  .skills-group ul { column-gap: .75rem; }
+}
+
+@media (max-width: 720px) {
+  .skills-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
