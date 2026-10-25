@@ -361,27 +361,39 @@
     var links=Array.from(document.querySelectorAll('.site-header nav a[href^="#"]'));
     var sections=links.map(function(link){return document.querySelector(link.getAttribute('href'));}).filter(Boolean);
     if(!links.length||!sections.length)return;
-    var scrollTimer;
-    function activate(id){
+    var nav=links[0].parentElement,activeId=null,scrollFrame=0;
+    function activate(id,forcePosition){
+      var activeLink=links.find(function(link){return link.hash==='#'+id;});
+      if(!activeLink)return;
       links.forEach(function(link){
-        var selected=link.getAttribute('href')==='#'+id;
+        var selected=link===activeLink;
         if(selected)link.setAttribute('aria-current','location');
         else link.removeAttribute('aria-current');
       });
+      nav.dataset.active='true';
+      if(activeId!==id||forcePosition){
+        var linkRect=activeLink.getBoundingClientRect(),navRect=nav.getBoundingClientRect();
+        nav.style.setProperty('--active-nav-x',(linkRect.left-navRect.left)+'px');
+        nav.style.setProperty('--active-nav-scale',String(linkRect.width/navRect.width));
+        activeId=id;
+      }
     }
-    function updateFromScroll(){
+    function updateFromScroll(forcePosition){
       var activationLine=document.querySelector('.site-header').getBoundingClientRect().bottom+window.innerHeight*.28;
       var current=null;
       sections.forEach(function(section){if(section.getBoundingClientRect().top<=activationLine)current=section;});
-      if(current)activate(current.id);
-      else links.forEach(function(link){link.removeAttribute('aria-current');});
+      if(current)activate(current.id,forcePosition);
+      else{
+        links.forEach(function(link){link.removeAttribute('aria-current');});
+        nav.dataset.active='false';activeId=null;
+      }
     }
     links.forEach(function(link){link.addEventListener('click',function(){activate(link.hash.slice(1));});});
     window.addEventListener('scroll',function(){
-      window.clearTimeout(scrollTimer);
-      scrollTimer=window.setTimeout(updateFromScroll,120);
+      if(scrollFrame)return;
+      scrollFrame=window.requestAnimationFrame(function(){scrollFrame=0;updateFromScroll();});
     },{passive:true});
-    window.addEventListener('resize',updateFromScroll);
+    window.addEventListener('resize',function(){updateFromScroll(true);});
     updateFromScroll();
   }
   initSectionNavigation();
