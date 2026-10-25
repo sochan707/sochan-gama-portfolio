@@ -16,6 +16,26 @@
   var stateNode = document.getElementById('demo-state');
   var cycleNode = document.getElementById('demo-cycle');
   var liveDot = document.getElementById('live-dot');
+  var themeToggle = document.getElementById('theme-toggle');
+  var themeLabel = themeToggle.querySelector('.theme-toggle-label');
+
+  function isDarkTheme() { return document.documentElement.dataset.theme === 'dark'; }
+  function applyTheme(theme, persist) {
+    document.documentElement.dataset.theme = theme;
+    var dark = theme === 'dark';
+    var action = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    themeLabel.textContent = dark ? 'Light' : 'Dark';
+    themeToggle.setAttribute('aria-label', action);
+    themeToggle.title = action;
+    document.querySelector('meta[name="theme-color"]').content = dark ? '#141d1c' : '#fffdf9';
+    if (persist) {
+      try { localStorage.setItem('sochan-portfolio-theme', theme); } catch (_) { /* Keep the current choice for this page view. */ }
+    }
+    if (currentModel) currentModel.draw();
+  }
+  themeToggle.addEventListener('click', function () {
+    applyTheme(isDarkTheme() ? 'light' : 'dark', true);
+  });
 
   var projects = {
     prey: {
@@ -59,8 +79,9 @@
   function choice(random, items) { return items[Math.floor(random() * items.length)]; }
   function drawCircle(x, y, r, color) { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill(); }
   function baseCanvas(fill) {
+    if (isDarkTheme()) fill = '#1d3028';
     ctx.fillStyle = fill; ctx.fillRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(53,96,69,.055)'; ctx.lineWidth = 1;
+    ctx.strokeStyle = isDarkTheme() ? 'rgba(196,221,197,.09)' : 'rgba(53,96,69,.055)'; ctx.lineWidth = 1;
     for (var x = 0; x <= W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
     for (var y = 0; y <= H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
   }
@@ -139,7 +160,7 @@
       var h=this.predators[j],px=(h.x+.5)*cw,py=(h.y+.5)*ch;
       ctx.beginPath();ctx.moveTo(px,py-6);ctx.lineTo(px-5.5,py+4.5);ctx.lineTo(px+5.5,py+4.5);ctx.closePath();ctx.fillStyle='#7b5641';ctx.fill();
     }
-    if(this.done){ctx.fillStyle='rgba(247,250,245,.85)';ctx.fillRect(290,245,380,108);ctx.fillStyle='#264b3d';ctx.textAlign='center';ctx.font='600 25px Alegreya, Georgia, serif';ctx.fillText('One population reached zero',480,295);ctx.font='14px DM Sans, Arial, sans-serif';ctx.fillText('Reset to explore another run.',480,322);ctx.textAlign='start';}
+    if(this.done){ctx.fillStyle=isDarkTheme()?'rgba(22,38,31,.92)':'rgba(247,250,245,.85)';ctx.fillRect(290,245,380,108);ctx.fillStyle=isDarkTheme()?'#e7f0df':'#264b3d';ctx.textAlign='center';ctx.font='600 25px Alegreya, Georgia, serif';ctx.fillText('One population reached zero',480,295);ctx.font='14px DM Sans, Arial, sans-serif';ctx.fillText('Reset to explore another run.',480,322);ctx.textAlign='start';}
   };
   PreyModel.prototype.stats = function () {return [stat('Prey',this.prey.length),stat('Predators',this.predators.length),stat('Vegetation','Regrowing')];};
 
@@ -168,13 +189,13 @@
     baseCanvas('#eef4ed');
     var corners=[];
     for(var a=0;a<=1;a++)for(var b=0;b<=1;b++)for(var c=0;c<=1;c++)corners.push(this.project({x:a,y:b,z:c}));
-    ctx.strokeStyle='rgba(53,93,68,.32)';ctx.lineWidth=2;
+    ctx.strokeStyle=isDarkTheme()?'rgba(186,213,190,.46)':'rgba(53,93,68,.32)';ctx.lineWidth=2;
     for(var i=0;i<8;i++)for(var j=i+1;j<8;j++){
       var diff=((i^j)===1||(i^j)===2||(i^j)===4);
       if(diff){ctx.beginPath();ctx.moveTo(corners[i].x,corners[i].y);ctx.lineTo(corners[j].x,corners[j].y);ctx.stroke();}
     }
     var projected=this.agents.map(this.project.bind(this));this.links=0;
-    ctx.strokeStyle='rgba(71,113,126,.18)';ctx.lineWidth=1;
+    ctx.strokeStyle=isDarkTheme()?'rgba(151,203,203,.32)':'rgba(71,113,126,.18)';ctx.lineWidth=1;
     for(var m=0;m<this.agents.length;m++)for(var n=m+1;n<this.agents.length;n++){
       var aa=this.agents[m],bb=this.agents[n],dx=aa.x-bb.x,dy=aa.y-bb.y,dz=aa.z-bb.z;
       if(dx*dx+dy*dy+dz*dz<.012){this.links++;ctx.beginPath();ctx.moveTo(projected[m].x,projected[m].y);ctx.lineTo(projected[n].x,projected[n].y);ctx.stroke();}
@@ -232,12 +253,12 @@
     baseCanvas('#eaf1e8');var sx=W/100,sy=H/100;
     for(var py=0;py<30;py++)for(var px=0;px<48;px++){var count=this.path[py*48+px];if(count>0){ctx.fillStyle='rgba(150,119,87,'+Math.min(.34,count/110)+')';ctx.fillRect(px*20,py*20,20,20);}}
     for(var g=0;g<this.grass.length;g++){var patch=this.grass[g];drawCircle(patch.x*sx,patch.y*sy,8+patch.amount*13,'rgba(89,158,87,.2)');drawCircle(patch.x*sx,patch.y*sy,3+patch.amount*4,'#70a66b');}
-    for(var o=0;o<this.obstacles.length;o++){var ob=this.obstacles[o];ctx.fillStyle='#53685b';ctx.fillRect((ob.x-ob.w/2)*sx,(ob.y-ob.h/2)*sy,ob.w*sx,ob.h*sy);}
+    for(var o=0;o<this.obstacles.length;o++){var ob=this.obstacles[o];ctx.fillStyle=isDarkTheme()?'#879b87':'#53685b';ctx.fillRect((ob.x-ob.w/2)*sx,(ob.y-ob.h/2)*sy,ob.w*sx,ob.h*sy);}
     ctx.fillStyle='#c88753';ctx.fillRect(96*sx,42*sy,4*sx,16*sy);
     for(var i=0;i<this.sheep.length;i++){var sh=this.sheep[i];drawCircle(sh.x*sx,sh.y*sy,5.3,sh.goingToExit?'#466e9b':'#6d92ba');}
     drawCircle(this.dog.x*sx,this.dog.y*sy,8,this.dog.awake?'#a25c4f':'#8a7867');
-    if(!this.dog.awake){ctx.fillStyle='#536b5a';ctx.font='600 13px DM Sans, Arial, sans-serif';ctx.fillText('Dog wakes at cycle 500',22,33);}
-    if(this.done){ctx.fillStyle='rgba(247,250,245,.88)';ctx.fillRect(330,245,300,100);ctx.fillStyle='#264b3d';ctx.textAlign='center';ctx.font='600 27px Alegreya, Georgia, serif';ctx.fillText('All sheep exited',480,295);ctx.textAlign='start';}
+    if(!this.dog.awake){ctx.fillStyle=isDarkTheme()?'#e3ebdd':'#536b5a';ctx.font='600 13px DM Sans, Arial, sans-serif';ctx.fillText('Dog wakes at cycle 500',22,33);}
+    if(this.done){ctx.fillStyle=isDarkTheme()?'rgba(22,38,31,.92)':'rgba(247,250,245,.88)';ctx.fillRect(330,245,300,100);ctx.fillStyle=isDarkTheme()?'#e7f0df':'#264b3d';ctx.textAlign='center';ctx.font='600 27px Alegreya, Georgia, serif';ctx.fillText('All sheep exited',480,295);ctx.textAlign='start';}
   };
   SheepModel.prototype.stats=function(){return [stat('Sheep in field',this.sheep.length),stat('Exited',this.exited),stat('Dog',this.dog.awake?'Herding':'Resting')];};
 
@@ -308,5 +329,6 @@
     }
     lastTime=time;requestAnimationFrame(frame);
   }
+  applyTheme(isDarkTheme() ? 'dark' : 'light', false);
   selectProject('prey',false);setCanvasSize();requestAnimationFrame(frame);
 })();

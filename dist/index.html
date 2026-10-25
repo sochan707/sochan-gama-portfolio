@@ -6,6 +6,15 @@
     <meta name="theme-color" content="#fffdf9" />
     <meta name="description" content="Sarin Meas Sochan's portfolio of GAMA browser simulations and other coding projects." />
     <title>Sarin Meas Sochan · Software Projects</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('sochan-portfolio-theme');
+        const theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (_) {
+        document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+    </script>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +33,11 @@
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.8 8.8 0 1 0 20.2 15.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="theme-toggle-label">Dark</span>
+        </button>
         <a class="header-github" href="https://github.com/sochan707" target="_blank" rel="noopener noreferrer" aria-label="Sarin Meas Sochan on GitHub (opens in a new tab)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5v-2.6c-2.2.5-2.8-.9-3-1.5-.2-.5-.7-1.1-1.2-1.4-.4-.2-1-.8 0-.8.9 0 1.5.8 1.7 1.1 1 .8 1.7.6 2.2.4.1-.7.4-1.2.7-1.5-1.9-.2-3.9-1-3.9-4.2 0-.9.3-1.7.8-2.3-.1-.2-.4-1.1.1-2.4 0 0 .8-.2 2.5 1a8.7 8.7 0 0 1 4.6 0c1.7-1.2 2.5-1 2.5-1 .5 1.3.2 2.2.1 2.4.5.6.8 1.4.8 2.3 0 3.2-2 4-3.9 4.2.4.3.7.9.7 1.8V21A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg>
         </a>
@@ -96,21 +110,21 @@
             </div>
             <div class="coding-project-grid">
               <article class="coding-project-card">
-                <div class="coding-project-card-top"><span class="small-label">Shopping interface</span><span class="coding-project-index" aria-hidden="true">01</span></div>
+                <div class="coding-project-card-top"><span class="small-label">Shopping interface</span></div>
                 <h4>Novel Shop</h4>
                 <p>Novel-shopping interface with product browsing, cart, and checkout pages.</p>
                 <ul class="tech-list" aria-label="Technologies"><li>React</li><li>JavaScript</li><li>Vite</li></ul>
                 <a class="coding-project-link" href="https://github.com/sochan707/novel_shop" target="_blank" rel="noopener noreferrer" aria-label="View Novel Shop repository on GitHub (opens in a new tab)">View repository <span aria-hidden="true">↗</span></a>
               </article>
               <article class="coding-project-card">
-                <div class="coding-project-card-top"><span class="small-label">Team project · Team WoW</span><span class="coding-project-index" aria-hidden="true">02</span></div>
+                <div class="coding-project-card-top"><span class="small-label">Team project · Team WoW</span></div>
                 <h4>Life Goods</h4>
                 <p>Khmer-first packaged-food information with barcode lookup and optional translation.</p>
                 <ul class="tech-list" aria-label="Technologies"><li>React</li><li>TypeScript</li><li>FastAPI</li></ul>
                 <a class="coding-project-link" href="https://github.com/internetOnion/life-goods" target="_blank" rel="noopener noreferrer" aria-label="View Life Goods repository on GitHub (opens in a new tab)">View repository <span aria-hidden="true">↗</span></a>
               </article>
               <article class="coding-project-card">
-                <div class="coding-project-card-top"><span class="small-label">Recipe app</span><span class="coding-project-index" aria-hidden="true">03</span></div>
+                <div class="coding-project-card-top"><span class="small-label">Recipe app</span></div>
                 <h4>JongKran</h4>
                 <p>Recipe app with ingredient matching and saved favorites.</p>
                 <ul class="tech-list" aria-label="Technologies"><li>React</li><li>JavaScript</li></ul>
@@ -122,36 +136,39 @@
       </section>
 
       <section class="skills-section" id="skills" aria-labelledby="skills-title">
-        <div class="wrap">
+        <div class="wrap skills-layout">
           <div class="section-heading">
             <h2 id="skills-title">Technical skills.</h2>
             <p>Tools and technologies I use to build software.</p>
           </div>
           <div class="skills-grid">
-            <div class="skills-group">
-              <h3>Web &amp; backend</h3>
-              <ul>
+            <section class="skills-group" aria-labelledby="web-skills-title">
+              <h3 id="web-skills-title">Web &amp; backend</h3>
+              <ul aria-label="Web and backend skills">
                 <li>JavaScript</li>
+                <li>Node.js</li>
+                <li>Express.js</li>
                 <li>React</li>
                 <li>FastAPI</li>
               </ul>
-            </div>
-            <div class="skills-group">
-              <h3>Databases</h3>
-              <ul>
+            </section>
+            <section class="skills-group" aria-labelledby="database-skills-title">
+              <h3 id="database-skills-title">Databases</h3>
+              <ul aria-label="Database skills">
                 <li>SQL</li>
                 <li>MySQL</li>
                 <li>PostgreSQL</li>
                 <li>MongoDB</li>
+                <li>Prisma</li>
               </ul>
-            </div>
-            <div class="skills-group">
-              <h3>Tools &amp; simulation</h3>
-              <ul>
+            </section>
+            <section class="skills-group" aria-labelledby="tools-skills-title">
+              <h3 id="tools-skills-title">Tools &amp; simulation</h3>
+              <ul aria-label="Tools and simulation skills">
                 <li>Vite</li>
                 <li>GAMA</li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -161,7 +178,7 @@
         <div class="about-grid">
           <div class="about-block"><span class="small-label">Education</span><h3>CADT</h3><p>Bachelor's degree in progress · Expected 2028</p></div>
           <div class="about-block"><span class="small-label">Involvement</span><h3>Innovation Challenge</h3><p>Volunteer technical assistant</p></div>
-          <div class="about-block"><span class="small-label">Competition</span><h3>Next-Gen</h3><p>Trained junior students and worked on a competition project</p></div>
+          <div class="about-block"><span class="small-label">Competition</span><h3>Next-Gen Engagement Program - Batch III</h3><p>Trained junior students and worked on a competition project</p></div>
         </div></div>
       </section>
 
